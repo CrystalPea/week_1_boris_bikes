@@ -25,8 +25,8 @@ it "doesn't release a bike if none are available" do
 end
 
 it "does not accept a bike if full" do
-  subject.dock(Bike.new)
-  expect { subject.dock(Bike.new)}. to raise_error("Docking station full")
+  20.times { subject.dock(Bike.new) }
+  expect { subject.dock(Bike.new) }. to raise_error("Docking station full")
 end
 
 end
