@@ -18,4 +18,8 @@ describe DockingStation do
    docked_bike = subject.dock(bike)
  end
 
+it "sees if a bike has been docked" do
+  
+end
+
 end

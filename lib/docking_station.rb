@@ -1,6 +1,7 @@
 require_relative 'bike'
 
 class DockingStation
+
   def release_bike
     Bike.new
   end
@@ -9,8 +10,8 @@ class DockingStation
     @bike = bike
   end
 
-  def dock(bike)
-    puts "This is a bike!: #{@bike}"
-  end
+#  def dock(bike)
+#    puts "This is a bike!: #{@bike}"
+#  end
 
 end
