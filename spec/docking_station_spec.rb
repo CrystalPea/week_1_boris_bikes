@@ -35,4 +35,8 @@ describe DockingStation do
     expect(DockingStation.new(25).capacity).to eq 25
   end
 
+  it "if no capacity is prodivded, new dockings station should be initialized with default capacity of 20" do
+    expect(DockingStation.new.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
 end
