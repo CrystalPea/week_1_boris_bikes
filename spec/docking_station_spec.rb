@@ -11,14 +11,14 @@ describe DockingStation do
 
   it "checks it is working" do
     bike = subject.dock(Bike.new)
-    expect(bike).to be_working
+    expect(bike).to have_attributes(:bike_state => "working")
   end
 
  it "docking station docks bikes" do
     docked_bike = subject.dock(Bike.new)
  end
 
-  it { is_expected.to respond_to(:bike) }
+  it { is_expected.to respond_to(:bikes) }
 
   it "doesn't release a bike if none are available" do
     expect { subject.release_bike }.to raise_error("No bikes available")
@@ -37,6 +37,11 @@ describe DockingStation do
 
   it "if no capacity is prodivded, new dockings station should be initialized with default capacity of 20" do
     expect(DockingStation.new.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  it "does not release broken bikes" do
+    subject.dock(Bike.new("broken"))
+    expect { subject.release_bike }.to raise_error("Bike is broken")
   end
 
 end
