@@ -18,15 +18,21 @@ describe DockingStation do
     docked_bike = subject.dock(Bike.new)
  end
 
-it { is_expected.to respond_to(:bike) }
+  it { is_expected.to respond_to(:bike) }
 
-it "doesn't release a bike if none are available" do
-  expect { subject.release_bike }.to raise_error("No bikes available")
-end
+  it "doesn't release a bike if none are available" do
+    expect { subject.release_bike }.to raise_error("No bikes available")
+  end
 
-it "does not accept a bike if full" do
-  DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
-  expect { subject.dock(Bike.new) }. to raise_error("Docking station full")
-end
+  it "does not accept a bike if full" do
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
+    expect { subject.dock(Bike.new) }.to raise_error("Docking station full")
+  end
+
+  it { expect(DockingStation).to respond_to(:new).with(1).argument }
+
+  it "allows the user to set a number of bikes when creating a new docking station" do
+    expect(DockingStation.new(25).capacity).to eq 25
+  end
 
 end
